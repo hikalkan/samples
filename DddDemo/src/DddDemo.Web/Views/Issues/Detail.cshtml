@@ -1,0 +1,32 @@
+﻿@using DddDemo.Web.Models.Issues
+@model IssueDetailViewModel
+
+@{
+    ViewBag.Title = "Issue #" + Model.Issue.Id;
+}
+
+<h2>#@Model.Issue.Id @Model.Issue.Title</h2>
+
+<p>@Model.Issue.Body</p>
+
+<p>@Model.GetStateText()</p>
+
+<ul class="issue-comment-list">
+    @foreach (var comment in Model.Comments)
+    {
+        <li>
+            <p>@comment.Message</p>
+            <p><a href="/Users/@comment.CreatorUser.Id">@comment.CreatorUser.UserName</a></p>
+        </li>
+    }
+</ul>
+
+@if (!Model.Issue.IsLocked)
+{
+    <h5>Write new comment: </h5>
+    <form>
+        <input type="hidden" value="@Model.Issue.Id"/>
+        <textarea name="message"></textarea>
+        <button></button>
+    </form>
+}

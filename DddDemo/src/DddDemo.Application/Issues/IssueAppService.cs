@@ -87,14 +87,14 @@ namespace DddDemo.Issues
             return new GetIssueOutput
             {
                 Issue = _objectMapper.Map<IssueDto>(issue),
-                Comments = GetIssueCommentDtos(issue)
+                Comments = GetIssueCommentDtos(issue.Id)
             };
         }
 
-        private List<IssueCommentDto> GetIssueCommentDtos(Issue issue)
+        private List<IssueCommentDto> GetIssueCommentDtos(string issueId)
         {
             return _issueRepository
-                .GetCommentsWithCreatorUsers(issue.Id)
+                .GetCommentsWithCreatorUsers(issueId)
                 .Select(c =>
                 {
                     var commentDto = _objectMapper.Map<IssueCommentDto>(c.Comment);
