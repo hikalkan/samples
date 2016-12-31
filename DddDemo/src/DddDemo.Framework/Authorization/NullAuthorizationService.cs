@@ -18,5 +18,10 @@ namespace DddDemo.Authorization
         {
             
         }
+
+        public void CheckLogin()
+        {
+            
+        }
     }
 }

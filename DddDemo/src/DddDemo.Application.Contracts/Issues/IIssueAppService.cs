@@ -7,5 +7,7 @@ namespace DddDemo.Issues
         void AssignIssueToUser(AssignIssueToUserInput input);
 
         void AddComment(AddCommentInput input);
+
+        GetIssueOutput GetIssue(GetIssueInput input);
     }
 }

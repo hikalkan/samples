@@ -1,4 +1,6 @@
-﻿using DddDemo.Authorization;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DddDemo.Authorization;
 using DddDemo.Issues.Dtos;
 using DddDemo.Session;
 using DddDemo.Users;
@@ -18,19 +20,22 @@ namespace DddDemo.Issues
         private readonly IssueManager _issueManager;
         private readonly IValidationService _validationService;
         private readonly IUserEmailer _userEmailer;
+        private readonly IObjectMapper _objectMapper;
 
         public IssueAppService(
             IIssueRepository issueRepository,
             IUserRepository userRepository, 
             IssueManager issueManager,
             IValidationService validationService, 
-            IUserEmailer userEmailer)
+            IUserEmailer userEmailer,
+            IObjectMapper objectMapper)
         {
             _issueRepository = issueRepository;
             _userRepository = userRepository;
             _issueManager = issueManager;
             _validationService = validationService;
             _userEmailer = userEmailer;
+            _objectMapper = objectMapper;
 
             AuthorizationService = NullAuthorizationService.Instance;
             SessionService = NullSessionService.Instance;
@@ -70,6 +75,33 @@ namespace DddDemo.Issues
             var comment = issue.AddComment(currentUser, input.Message);
 
             _userEmailer.AddedIssueComment(currentUser, issue, comment);
+        }
+
+        public GetIssueOutput GetIssue(GetIssueInput input)
+        {
+            AuthorizationService.CheckLogin();
+            _validationService.Validate(input);
+
+            var issue = _issueRepository.Get(input.Id);
+
+            return new GetIssueOutput
+            {
+                Issue = _objectMapper.Map<IssueDto>(issue),
+                Comments = GetIssueCommentDtos(issue)
+            };
+        }
+
+        private List<IssueCommentDto> GetIssueCommentDtos(Issue issue)
+        {
+            return _issueRepository
+                .GetCommentsWithCreatorUsers(issue.Id)
+                .Select(c =>
+                {
+                    var commentDto = _objectMapper.Map<IssueCommentDto>(c.Comment);
+                    commentDto.CreatorUser = _objectMapper.Map<BasicUserDto>(c.CreatorUser);
+                    return commentDto;
+                })
+                .ToList();
         }
     }
 }

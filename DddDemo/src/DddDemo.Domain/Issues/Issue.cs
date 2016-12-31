@@ -33,7 +33,7 @@ namespace DddDemo.Issues
 
         [NotNull]
         public IReadOnlyList<IssueComment> Comments => _comments.ToImmutableList();
-        protected ICollection<IssueComment> _comments { get; set; }
+        protected virtual ICollection<IssueComment> _comments { get; set; }
 
         protected Issue()
         {

@@ -5,5 +5,7 @@ namespace DddDemo.Authorization
         void CheckPermission(string permissionName);
 
         void CheckPermission(string permissionName, string entityId);
+
+        void CheckLogin();
     }
 }
