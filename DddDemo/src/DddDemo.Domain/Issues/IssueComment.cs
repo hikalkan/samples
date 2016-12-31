@@ -24,5 +24,10 @@ namespace DddDemo.Issues
             Message = message;
             CreatorUserId = creatorUserId;
         }
+
+        public override string ToString()
+        {
+            return $"[IssueComment {Id}] {Message}";
+        }
     }
 }

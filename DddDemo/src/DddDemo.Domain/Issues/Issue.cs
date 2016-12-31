@@ -67,5 +67,10 @@ namespace DddDemo.Issues
         }
 
         //TODO: Add/delete comments!
+
+        public override string ToString()
+        {
+            return $"[Issue {Id}] {Title}";
+        }
     }
 }

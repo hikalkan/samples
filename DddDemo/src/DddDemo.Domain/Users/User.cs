@@ -9,13 +9,18 @@ namespace DddDemo.Users
         public string Id { get; protected set; }
 
         [NotNull]
-        public string UserName { get; }
+        public string UserName { get; protected set; }
 
         public User([NotNull] string userName)
         {
             Id = Guid.NewGuid().ToString("D");
 
             UserName = userName;
+        }
+
+        public override string ToString()
+        {
+            return $"[User {Id}] {UserName}";
         }
     }
 }

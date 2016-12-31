@@ -5,5 +5,7 @@ namespace DddDemo.Issues
         Issue Get(string id);
 
         int GetOpenIssueCountOfUser(string userId);
+
+        void Update(Issue issue);
     }
 }
