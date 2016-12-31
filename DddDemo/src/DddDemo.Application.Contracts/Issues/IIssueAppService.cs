@@ -4,6 +4,8 @@ namespace DddDemo.Issues
 {
     public interface IIssueAppService
     {
-        void AssignIssueToUser(AssignIssueToUserDto input);
+        void AssignIssueToUser(AssignIssueToUserInput input);
+
+        void AddComment(AddCommentInput input);
     }
 }

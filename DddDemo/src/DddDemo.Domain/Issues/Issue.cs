@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Collections.ObjectModel;
+using DddDemo.Issues.Comments;
 using DddDemo.Users;
 using JetBrains.Annotations;
 
@@ -20,7 +21,9 @@ namespace DddDemo.Issues
 
         public bool IsClosed { get; protected set; }
 
-        public IssueCloseReason Reason { get; protected set; }
+        public bool IsLocked { get; protected set; }
+
+        public IssueCloseReason? CloseReason { get; protected set; }
 
         [NotNull]
         public string CreatorUserId { get; protected set; } //No navigation property to another aggregate root!
@@ -34,7 +37,7 @@ namespace DddDemo.Issues
 
         protected Issue()
         {
-            
+
         }
 
         public Issue([NotNull] string creatorUserId, [NotNull] string title, string body = null) //Can not get AssignedUserId into constructor!
@@ -66,7 +69,46 @@ namespace DddDemo.Issues
             AssignedUserId = null;
         }
 
-        //TODO: Add/delete comments!
+        public IssueComment AddComment([NotNull] User creatorUser, [NotNull] string message)
+        {
+            Check.NotNull(creatorUser, nameof(creatorUser));
+
+            if (IsLocked)
+            {
+                throw new IssueLockedException(Id);
+            }
+
+            var comment = new IssueComment(creatorUser.Id, message);
+            _comments.Add(comment);
+            return comment;
+        }
+
+        public void Close(IssueCloseReason reason)
+        {
+            CloseReason = reason;
+            IsClosed = true;
+        }
+
+        public void ReOpen()
+        {
+            IsClosed = false;
+            CloseReason = null;
+        }
+
+        public void Lock()
+        {
+            if (!IsClosed)
+            {
+                throw new InvalidOperationException("An open issue can not be locked. Should be closed first!");
+            }
+
+            IsLocked = true;
+        }
+
+        public void Unlock()
+        {
+            IsLocked = false;
+        }
 
         public override string ToString()
         {

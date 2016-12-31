@@ -5,9 +5,9 @@ namespace DddDemo
 {
     public class OperationalException : Exception
     {
-        public OperationalExceptionType Type { get; }
+        public string Type { get; }
 
-        public OperationalException(OperationalExceptionType type, string message)
+        public OperationalException(string type, string message = null)
             : base(message)
         {
             Type = type;

@@ -37,7 +37,7 @@ namespace DddDemo.Issues
             Logger = NullLogger.Instance;
         }
 
-        public void AssignIssueToUser(AssignIssueToUserDto input)
+        public void AssignIssueToUser(AssignIssueToUserInput input)
         {
             //TODO: Unit of work / transaction management
 
@@ -55,6 +55,21 @@ namespace DddDemo.Issues
             }
 
             Logger.LogInformation($"Assigned issue {issue} to user {user}");
+        }
+
+        public void AddComment(AddCommentInput input)
+        {
+            //TODO: Unit of work / transaction management
+
+            AuthorizationService.CheckPermission("AddComment", input.IssueId);
+            _validationService.Validate(input);
+
+            var currentUser = _userRepository.Get(SessionService.UserId);
+            var issue = _issueRepository.Get(input.IssueId);
+
+            var comment = issue.AddComment(currentUser, input.Message);
+
+            _userEmailer.AddedIssueComment(currentUser, issue, comment);
         }
     }
 }

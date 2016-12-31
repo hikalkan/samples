@@ -1,7 +1,9 @@
 namespace DddDemo
 {
-    public enum OperationalExceptionType
+    public static class OperationalExceptionType
     {
-        MaxConcurrentOpenIssueCountForAUser
+        public const string MaxConcurrentOpenIssueCountForAUser = "MaxConcurrentOpenIssueCountForAUser";
+        public const string IssueLocked = "IssueLocked";
+        public const string InvalidOperation = "InvalidOperation";
     }
 }

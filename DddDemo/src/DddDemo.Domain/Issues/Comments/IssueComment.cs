@@ -1,7 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace DddDemo.Issues
+namespace DddDemo.Issues.Comments
 {
     public class IssueComment //Entity
     {

@@ -2,14 +2,14 @@
 
 namespace DddDemo.Issues.Dtos
 {
-    public class AssignIssueToUserDto
+    public class AddCommentInput
     {
         [Required]
         [MaxLength(128)]
         public string IssueId { get; set; }
 
         [Required]
-        [MaxLength(128)]
-        public string UserId { get; set; }
+        [MaxLength(65536)]
+        public string Message { get; protected set; }
     }
 }

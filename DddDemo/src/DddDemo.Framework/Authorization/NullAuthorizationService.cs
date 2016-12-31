@@ -13,5 +13,10 @@ namespace DddDemo.Authorization
         {
             
         }
+
+        public void CheckPermission(string permissionName, string entityId)
+        {
+            
+        }
     }
 }
