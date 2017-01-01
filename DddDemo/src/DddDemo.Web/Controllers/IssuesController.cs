@@ -1,5 +1,6 @@
 ﻿using DddDemo.Issues;
 using DddDemo.Issues.Dtos;
+using DddDemo.Session;
 using DddDemo.Web.Models.Issues;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,16 @@ namespace DddDemo.Web.Controllers
     {
         private readonly IIssueAppService _issueAppService;
         private readonly IObjectMapper _objectMapper;
+        private readonly ISessionService _sessionService;
 
-        public IssuesController(IIssueAppService issueAppService, IObjectMapper objectMapper)
+        public IssuesController(
+            IIssueAppService issueAppService, 
+            IObjectMapper objectMapper,
+            ISessionService sessionService)
         {
             _issueAppService = issueAppService;
             _objectMapper = objectMapper;
+            _sessionService = sessionService;
         }
 
         public IActionResult Index()
@@ -28,7 +34,10 @@ namespace DddDemo.Web.Controllers
         public IActionResult Detail([FromRoute] string id)
         {
             var output = _issueAppService.GetIssue(new GetIssueInput { Id = id });
+
             var viewModel = _objectMapper.Map<IssueDetailViewModel>(output);
+            viewModel.CurrentUserId = _sessionService.UserId;
+
             return View(viewModel);
         }
     }

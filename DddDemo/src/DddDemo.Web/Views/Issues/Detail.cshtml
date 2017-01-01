@@ -16,10 +16,18 @@
     {
         <li>
             <p>@comment.Message</p>
+
             <p><a href="/Users/@comment.CreatorUser.Id">@comment.CreatorUser.UserName</a></p>
+
+            @if (Model.CanDeleteComment(comment))
+            {
+                <button class="comment-delete-button">Delete</button>
+            }
         </li>
     }
 </ul>
+
+
 
 @if (!Model.Issue.IsLocked)
 {

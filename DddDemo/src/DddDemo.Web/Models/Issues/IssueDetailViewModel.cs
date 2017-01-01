@@ -4,6 +4,8 @@ namespace DddDemo.Web.Models.Issues
 {
     public class IssueDetailViewModel : GetIssueOutput
     {
+        public string CurrentUserId { get; set; }
+
         public string GetStateText()
         {
             if (Issue.IsClosed)
@@ -14,6 +16,11 @@ namespace DddDemo.Web.Models.Issues
             {
                 return "Open";
             }
+        }
+
+        public bool CanDeleteComment(IssueCommentDto comment)
+        {
+            return comment.CreatorUser.Id == CurrentUserId;
         }
     }
 }
