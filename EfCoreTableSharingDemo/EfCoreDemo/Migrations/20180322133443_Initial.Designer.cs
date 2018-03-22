@@ -11,7 +11,7 @@ using System;
 namespace EfCoreDemo.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180322132615_Initial")]
+    [Migration("20180322133443_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,7 +52,7 @@ namespace EfCoreDemo.Migrations
             modelBuilder.Entity("EfCoreDemo.User", b =>
                 {
                     b.HasOne("EfCoreDemo.DetailedUser")
-                        .WithOne()
+                        .WithOne("User")
                         .HasForeignKey("EfCoreDemo.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

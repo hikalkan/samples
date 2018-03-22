@@ -26,6 +26,15 @@ namespace EfCoreDemo
                 }
             }
 
+            //Query users from "DetailedUsers" DbSet
+            using (var dbContext = new MyDbContext(CreateDbContextOptions()))
+            {
+                foreach (var user in dbContext.DetailedUsers.ToList())
+                {
+                    Console.WriteLine(user);
+                }
+            }
+
             Console.ReadLine();
         }
 
@@ -45,7 +54,7 @@ namespace EfCoreDemo
 
         public User()
         {
-            Id = Guid.NewGuid();
+
         }
 
         public User(string userName)
@@ -64,17 +73,18 @@ namespace EfCoreDemo
     {
         public Guid Id { get; set; }
 
-        public string UserName { get; set; }
-
         public string Email { get; set; }
+
+        public string UserName { get; set; }
 
         public DetailedUser()
         {
-            
+
         }
 
         public DetailedUser(string userName, string email)
         {
+            Id = Guid.NewGuid();
             UserName = userName;
             Email = email;
         }

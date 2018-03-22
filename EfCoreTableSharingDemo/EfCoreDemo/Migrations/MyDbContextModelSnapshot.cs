@@ -51,7 +51,7 @@ namespace EfCoreDemo.Migrations
             modelBuilder.Entity("EfCoreDemo.User", b =>
                 {
                     b.HasOne("EfCoreDemo.DetailedUser")
-                        .WithOne()
+                        .WithOne("User")
                         .HasForeignKey("EfCoreDemo.User", "Id")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
