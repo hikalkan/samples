@@ -11,7 +11,7 @@ using System;
 namespace EfCoreDemo.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20180322130327_Initial")]
+    [Migration("20180322132615_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace EfCoreDemo.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email")
-                        .HasColumnName("UserName");
+                        .HasColumnName("Email");
 
                     b.Property<string>("UserName")
                         .HasColumnName("UserName");

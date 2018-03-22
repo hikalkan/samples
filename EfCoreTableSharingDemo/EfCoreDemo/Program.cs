@@ -104,17 +104,17 @@ namespace EfCoreDemo
             modelBuilder.Entity<User>(b =>
             {
                 b.ToTable("MyUsers");
+
                 b.Property(x => x.UserName).HasColumnName(nameof(User.UserName));
-                //b.HasOne<DetailedUser>()
-                //    .WithOne()
-                //    .HasForeignKey<DetailedUser>(u => u.Id);
             });
 
             modelBuilder.Entity<DetailedUser>(b =>
             {
                 b.ToTable("MyUsers");
+
                 b.Property(x => x.UserName).HasColumnName(nameof(DetailedUser.UserName));
-                b.Property(x => x.Email).HasColumnName(nameof(DetailedUser.UserName));
+                b.Property(x => x.Email).HasColumnName(nameof(DetailedUser.Email));
+
                 b.HasOne<User>()
                     .WithOne()
                     .HasForeignKey<User>(u => u.Id);

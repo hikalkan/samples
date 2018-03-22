@@ -26,7 +26,7 @@ namespace EfCoreDemo.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email")
-                        .HasColumnName("UserName");
+                        .HasColumnName("Email");
 
                     b.Property<string>("UserName")
                         .HasColumnName("UserName");

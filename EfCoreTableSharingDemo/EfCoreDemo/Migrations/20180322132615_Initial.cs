@@ -13,6 +13,7 @@ namespace EfCoreDemo.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
                     UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
