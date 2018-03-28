@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20180322130152_Initial.cs" />
-    <Compile Remove="Migrations\20180322130327_Initial.cs" />
-    <Compile Remove="Migrations\20180322132401_Initial.cs" />
-    <Compile Remove="Migrations\20180322132615_Initial.cs" />
+    <Compile Remove="Migrations\20180325100758_Initial.cs" />
+    <Compile Remove="Migrations\20180325101008_Initial.cs" />
+    <Compile Remove="Migrations\20180325101118_Initial.cs" />
+    <Compile Remove="Migrations\20180325101705_Initial.cs" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />

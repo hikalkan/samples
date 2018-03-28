@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using EfCoreDemo.Ef;
+using EfCoreDemo.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace EfCoreDemo
 {
@@ -9,16 +10,14 @@ namespace EfCoreDemo
     {
         static void Main(string[] args)
         {
-            //Add some users using "DetailedUsers" DbSet
-            using (var dbContext = new MyDbContext(CreateDbContextOptions()))
-            {
-                dbContext.DetailedUsers.Add(new DetailedUser("john", "john@aspnetboilerplate.com"));
-                dbContext.DetailedUsers.Add(new DetailedUser("neo", "neo@aspnetboilerplate.com"));
-                dbContext.SaveChanges();
-            }
+            //using (var dbContext = new IdentityDbContext(CreateDbContextOptions<IdentityDbContext>()))
+            //{
+            //    dbContext.Users.Add(new IdentityUser(Guid.NewGuid(), "john", "123"));
+            //    dbContext.Users.Add(new IdentityUser(Guid.NewGuid(), "neo", "123"));
+            //    dbContext.SaveChanges();
+            //}
 
-            //Query users from "Users" DbSet
-            using (var dbContext = new MyDbContext(CreateDbContextOptions()))
+            using (var dbContext = new IdentityDbContext(CreateDbContextOptions<IdentityDbContext>()))
             {
                 foreach (var user in dbContext.Users.ToList())
                 {
@@ -26,117 +25,28 @@ namespace EfCoreDemo
                 }
             }
 
-            //Query users from "DetailedUsers" DbSet
-            using (var dbContext = new MyDbContext(CreateDbContextOptions()))
+            using (var dbContext = new QaDbContext(CreateDbContextOptions<QaDbContext>()))
             {
-                foreach (var user in dbContext.DetailedUsers.ToList())
+                foreach (var user in dbContext.Users.ToList())
                 {
                     Console.WriteLine(user);
+                }
+
+                foreach (var question in dbContext.Questions.ToList())
+                {
+                    Console.WriteLine(question);
                 }
             }
 
             Console.ReadLine();
         }
 
-        public static DbContextOptions<MyDbContext> CreateDbContextOptions()
+        public static DbContextOptions<TDbContext> CreateDbContextOptions<TDbContext>() 
+            where TDbContext : DbContext
         {
-            return new DbContextOptionsBuilder<MyDbContext>()
-                   .UseSqlServer("Server=localhost;Database=MyDbContextDb;Trusted_Connection=True;MultipleActiveResultSets=true")
+            return new DbContextOptionsBuilder<TDbContext>()
+                   .UseSqlServer("Server=localhost;Database=EfCoreDemo;Trusted_Connection=True;MultipleActiveResultSets=true")
                    .Options;
-        }
-    }
-
-    public class User
-    {
-        public Guid Id { get; set; }
-
-        public string UserName { get; set; }
-
-        public User()
-        {
-
-        }
-
-        public User(string userName)
-        {
-            Id = Guid.NewGuid();
-            UserName = userName;
-        }
-
-        public override string ToString()
-        {
-            return $"# User => Id = {Id}, UserName = {UserName}";
-        }
-    }
-
-    public class DetailedUser
-    {
-        public Guid Id { get; set; }
-
-        public string Email { get; set; }
-
-        public string UserName { get; set; }
-
-        public DetailedUser()
-        {
-
-        }
-
-        public DetailedUser(string userName, string email)
-        {
-            Id = Guid.NewGuid();
-            UserName = userName;
-            Email = email;
-        }
-
-        public override string ToString()
-        {
-            return $"# DetailedUser => Id = {Id}, UserName = {UserName}, Email = {Email}";
-        }
-    }
-
-    public class MyDbContext : DbContext
-    {
-        public DbSet<User> Users { get; set; }
-
-        public DbSet<DetailedUser> DetailedUsers { get; set; }
-
-        public MyDbContext(DbContextOptions<MyDbContext> options)
-            : base(options)
-        {
-
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<User>(b =>
-            {
-                b.ToTable("MyUsers");
-
-                b.Property(x => x.UserName).HasColumnName(nameof(User.UserName));
-            });
-
-            modelBuilder.Entity<DetailedUser>(b =>
-            {
-                b.ToTable("MyUsers");
-
-                b.Property(x => x.UserName).HasColumnName(nameof(DetailedUser.UserName));
-                b.Property(x => x.Email).HasColumnName(nameof(DetailedUser.Email));
-
-                b.HasOne<User>()
-                    .WithOne()
-                    .HasForeignKey<User>(u => u.Id);
-            });
-        }
-    }
-
-    public class MyDbContextFactory : IDesignTimeDbContextFactory<MyDbContext>
-    {
-        public MyDbContext CreateDbContext(string[] args)
-        {
-            return new MyDbContext(Program.CreateDbContextOptions());
         }
     }
 }
