@@ -22,13 +22,15 @@ namespace MongoDbDemo
             //CreateUsers(identityUsers);
 
             var identityUserById = identityUsers.Find(u => u.Id == _johnUserId).FirstOrDefault();
+            identityUserById.Roles.Add(new IdentityUserRole { UserId = identityUserById.Id, RoleName = "Role-" + new Random().Next(1, 10000) });
             Write(identityUserById);
+            identityUsers.ReplaceOne(Builders<IdentityUser>.Filter.Eq(u => u.Id, identityUserById.Id), identityUserById);
 
             var qaUser = qaUsers.Find(u => u.UserName == "john").FirstOrDefault();
             Write(qaUser);
 
             qaUser.Reputation += 1.0f;
-            qaUser.Activities.Add(new QaUserActivity{UserId = qaUser.Id, ActivityDefinition = "Tested", Time = DateTime.Now});
+            qaUser.Activities.Add(new QaUserActivity { UserId = qaUser.Id, ActivityDefinition = "Tested", Time = DateTime.Now });
 
             //qaUsers.UpdateOne(Builders<QaUser>.Filter.Eq(u => u.Id, qaUser.Id), ConvertToBsonDoc(qaUser));
             qaUsers.ReplaceOne(Builders<QaUser>.Filter.Eq(u => u.Id, qaUser.Id), qaUser);
@@ -58,7 +60,8 @@ namespace MongoDbDemo
             BsonClassMap.RegisterClassMap<IdentityUser>(map =>
             {
                 map.AutoMap();
-                map.SetIgnoreExtraElements(true);
+                //map.SetIgnoreExtraElements(true);
+                map.MapExtraElementsProperty(u => u.ExtraProperties);
             });
 
             BsonClassMap.RegisterClassMap<QaUser>(map =>
@@ -80,7 +83,14 @@ namespace MongoDbDemo
                 }
             });
 
-            identityUsers.InsertOne(new IdentityUser(Guid.NewGuid(), Guid.NewGuid().ToString(), "123"));
+            identityUsers.InsertOne(new IdentityUser(Guid.NewGuid(), Guid.NewGuid().ToString(), "123")
+            {
+                ExtraProperties =
+                    {
+                        {"MyCustomProp", "MyValue"}
+                    }
+            }
+            );
         }
 
         private static BsonDocument ConvertToBsonDoc(QaUser qaUser)
