@@ -18,8 +18,6 @@ namespace EfCoreGlobalFilterBugDemo
 
         private static void DoWork()
         {
-            //CurrentTenantId = Guid.Parse("ff2d5abd-b6a8-4c3b-91ca-29261e989394");
-
             Parallel.For(
                 0, 
                 32,
@@ -35,10 +33,10 @@ namespace EfCoreGlobalFilterBugDemo
                 Console.WriteLine(await context.Users.FirstOrDefaultAsync(u => u.UserName == "David"));
 
                 var users = await context.Users.ToListAsync();
-                //if (users.Any(u => u.TenantId != CurrentTenantId))
-                //{
-                //    throw new Exception("Unexpected TenantId!");
-                //}
+                if (users.Any(u => u.TenantId != CurrentTenantId))
+                {
+                    throw new Exception("Unexpected TenantId!");
+                }
 
                 foreach (var user in users)
                 {
