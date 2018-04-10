@@ -12,7 +12,7 @@ namespace EfCoreCollectionBugRepro.Entities
 
         public virtual DateTime Time { get; protected set; }
 
-        private ChangeLog()
+        protected ChangeLog()
         {
             
         }

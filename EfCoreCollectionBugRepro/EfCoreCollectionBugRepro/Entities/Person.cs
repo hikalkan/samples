@@ -11,7 +11,7 @@ namespace EfCoreCollectionBugRepro.Entities
 
         public virtual List<ChangeLog> ChangeLogs { get; private set; }
 
-        private Person()
+        protected Person()
         {
             
         }
