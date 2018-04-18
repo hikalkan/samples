@@ -1,0 +1,9 @@
+{
+  "version": "0.1.0",
+  "name": "typescript-mvc-demo",
+  "devDependencies": {
+    "@types/jquery": "^3.3.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14"
+  }
+}

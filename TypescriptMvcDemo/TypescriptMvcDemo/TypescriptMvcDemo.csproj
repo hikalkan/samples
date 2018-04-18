@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\app\IndexPage.ts" />
+    <Content Remove="wwwroot\app\PersonDto.ts" />
+    <Content Remove="wwwroot\app\typings.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\app\typings.d.ts" />
+    <TypeScriptCompile Include="wwwroot\app\Pages\Index.ts" />
+    <TypeScriptCompile Include="wwwroot\app\Dtos\PersonDto.ts" />
+  </ItemGroup>
+
+</Project>
