@@ -1,5 +1,8 @@
 ﻿export class PersonDto {
     constructor(public name: string) {
-        $('.content').append('<p>' + name + '</p>');
+
+        //volo.qa.questions.question.create({ });
+
+        $('.content').append('<p>6 ' + name + '</p>');
     }
 }
