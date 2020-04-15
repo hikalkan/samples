@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryBindingError", "DictionaryBindingError\DictionaryBindingError.csproj", "{42090B86-9E98-4C54-A4DF-411C4DF13732}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{42090B86-9E98-4C54-A4DF-411C4DF13732}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42090B86-9E98-4C54-A4DF-411C4DF13732}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42090B86-9E98-4C54-A4DF-411C4DF13732}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42090B86-9E98-4C54-A4DF-411C4DF13732}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CD0F768-3B2F-408F-9378-6E7A230EDEC3}
+	EndGlobalSection
+EndGlobal
