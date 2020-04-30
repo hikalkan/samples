@@ -20,5 +20,12 @@ namespace DictionaryBindingError.Controllers
         {
             return Content(string.Join(", ", dict.Select(v => v.Key + "=" + v.Value)));
         }
+
+        //Request example: http://localhost:56820/test/test3?dict[A]=C&dict[B]=D
+        [Route("test3")]
+        public ActionResult Test3(Dictionary<string, string> dict)
+        {
+            return Content(string.Join(", ", dict.Select(v => v.Key + "=" + v.Value)));
+        }
     }
 }
