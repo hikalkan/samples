@@ -9,7 +9,7 @@ namespace SingletonVsStatic.SingletonLib
 
         private readonly IDictionary<string, object> _cacheDictionary;
         
-        internal SingletonCache()
+        protected internal SingletonCache()
         {
             _cacheDictionary = new Dictionary<string, object>();
         }
