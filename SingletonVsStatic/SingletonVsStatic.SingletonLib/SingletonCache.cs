@@ -5,7 +5,7 @@ namespace SingletonVsStatic.SingletonLib
 {
     public class SingletonCache
     {
-        public static SingletonCache Instance { get; } = new SingletonCache();
+        public static SingletonCache Instance { get; protected set; } = new SingletonCache();
 
         private readonly IDictionary<string, object> _cacheDictionary;
         

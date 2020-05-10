@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace SingletonVsStatic.SingletonLib.Tests
 {
@@ -68,6 +69,15 @@ namespace SingletonVsStatic.SingletonLib.Tests
 
             //The key is not present, so it uses the factory to create a new one
             Assert.Equal("TestValue1_Changed", _singletonCache.GetOrAdd("TestKey1", () => "TestValue1_Changed"));
+        }
+
+        [Fact]
+        public void GetOrThrowException_Should_Throw_Exception_For_Unknown_Keys()
+        {
+            Assert.Throws<ApplicationException>(() =>
+            {
+                _singletonCache.GetOrThrowException("UnknownKey");
+            });
         }
     }
 }
