@@ -4,7 +4,7 @@ namespace SingletonVsStatic.StaticLib.Tests
 {
     public class StaticCache_Tests
     {
-        public StaticCache_Tests()
+        static StaticCache_Tests()
         {
             StaticCache.Add("TestKey1", "TestValue1");
             StaticCache.Add("TestKey2", "TestValue2");
