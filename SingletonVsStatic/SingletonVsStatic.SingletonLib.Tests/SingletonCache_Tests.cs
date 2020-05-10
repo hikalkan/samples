@@ -17,6 +17,8 @@ namespace SingletonVsStatic.SingletonLib.Tests
         [Fact]
         public void Should_Contain_Initial_Values()
         {
+            Assert.Equal(2, _singletonCache.GetCount());
+
             Assert.Equal("TestValue1", _singletonCache.GetOrNull("TestKey1"));
             Assert.Equal("TestValue2", _singletonCache.GetOrNull("TestKey2"));
         }
