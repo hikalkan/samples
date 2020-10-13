@@ -62,7 +62,7 @@ namespace GenderProblem
                     else
                     {
                         return "GA"; //Another [G]irl and [A]yşe
-                    }                    
+                    }
                 }
                 else if (g == "GB") //[G]irl and [B]oy
                 {
@@ -92,3 +92,15 @@ namespace GenderProblem
         }
     }
 }
+
+/* EXAMPLE OUTPUT:
+
+AtLeastOneGirlCase **********************************************
+Ratio of atleastOneGirlGroups / childGroups: 74.96
+Ratio of twoGirlsCount / atleastOneGirlGroups: 33.37
+
+AtLeastOneGirlWithKnownNameCase **********************************************
+Ratio of atleastOneGirlGroups / childGroups: 75.03
+Ratio of twoGirlsCount / namedGroups: 33.34
+
+ */
