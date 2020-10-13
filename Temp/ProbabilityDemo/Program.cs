@@ -31,7 +31,7 @@ namespace GenderProblem
             var atleastOneGirlGroups = childGroups.Where(g => g != "BB").ToList();
             Console.WriteLine("Ratio of atleastOneGirlGroups / childGroups: " + (atleastOneGirlGroups.Count * 100.0 / childGroups.Count).ToString("0.00"));
 
-            var twoGirlsCount = atleastOneGirlGroups.Where(g => g == "GG").Count();
+            var twoGirlsCount = atleastOneGirlGroups.Count(g => g == "GG");
 
             Console.WriteLine("Ratio of twoGirlsCount / atleastOneGirlGroups: " + (twoGirlsCount * 100.0 / atleastOneGirlGroups.Count).ToString("0.00"));
             Console.WriteLine();
@@ -74,7 +74,7 @@ namespace GenderProblem
                 }
             }).ToList();
 
-            var twoGirlsCount = namedGroups.Where(g => g == "GA" || g == "AG").Count();
+            var twoGirlsCount = namedGroups.Count(g => g == "GA" || g == "AG");
 
             Console.WriteLine("Ratio of twoGirlsCount / namedGroups: " + (twoGirlsCount * 100.0 / namedGroups.Count).ToString("0.00"));
         }
