@@ -44,7 +44,7 @@ Bu dört durumun da olasılığı 1/4 (%25). Sunucu bize "en az birisi kız" bil
 * B) Kapı-1: **Kız**, Kapı-2: **Erkek** (1/3)
 * C) Kapı-1: **Erkek**, Kapı-2: **Kız** (1/3)
 
-Her 3 durumda da sunucu (kız olduğunu kesin bildiği) bir kapının arkasından bir çocuk çıkarabilir ve adını söyletebiir;
+Her **3 durumda da** sunucu **kız olduğunu kesin bildiği** bir kapının arkasından bir **kız çocuğu** çıkarabilir ve adını söyletebiir;
 
 * A durumunda sunucu kapılardan kafasına göre birisini seçebilir. Kızlardan birinin adı Ayşe diğeri Fatma olabilir. Ayşe'yi seçerse çocuk adını sorulduğunda "Ayşe", diğer kızı seçerse "Fatma" diyecek. Sonuçta **çocuğun ismini sunucu seçtikten sonra öğreniyoruz**.
 * B durumunda sunucu Kapı-1'i seçecektir, çocuğun adı "Ayşe", "Fatma" ya da "Hayriye", bize söylediğinde bize olasılık hakkında ek bir bilgi vermiyor, zaten çocuğu canlı görüyoruz ve Kapı-1 arkasında kız olduğu bilgisini öğreniyoruz.
