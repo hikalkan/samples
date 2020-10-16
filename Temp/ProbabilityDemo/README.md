@@ -55,3 +55,8 @@ Görüldüğü gibi 3 farklı durumda da sunucu bize ismi belli olan bir kız ç
 ### Not/Düşünceler
 
 Buradaki hile sunucunun kapıyı açarken "rastgele" değil, "erkek olmayacak şekilde" **bilinçli** açmasıdır. Bu problem bana Monty Hall problemini anımsattı. Orada da sunucunun "içerisinde keçi olduğunu zaten bildiği" bir kapıyı açması baştaki olasılıkları değiştirmiyordu. Bilmeyenler için: [Monty Hall problemi](https://tr.wikipedia.org/wiki/Monty_Hall_problemi).
+
+### Ek Gelişmeler
+
+Durumu Yaşar Safkan'a sormam neticesinde kendisi bir video hazırladı sağolsun ve durumu açıkladı: https://www.youtube.com/watch?v=-QCFdVAKokg
+Anladığım kadarıyla durum benim yukarıda anlattığım problemden farklı. Burada "Ayşe"nin daha önceden bilinen, belirli bir kişi olması durumunda olasılığın 1/2 olduğundan bahsediyor Yaşar Hocamız. Bunu anladım ve kendisine katılıyorum tabii ki, zaten tam olarak ispatlıyor. Yukarıda problemin farkı o "en az bir olan kız çocuğunun" daha önceden bilinen birisi olmaması, rastgele seçim sonucunda sadece ek bilgi olarak adının açıklanması ya da gösterilmesi.
