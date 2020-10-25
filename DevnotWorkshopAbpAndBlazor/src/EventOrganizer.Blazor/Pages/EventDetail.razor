@@ -20,6 +20,12 @@
                         <Button Color="Color.Secondary" Clicked="UnRegister">Cancel registration!</Button>
                     }
                 </div>
+                @if (CurrentUser.Id == Event.CreatorId)
+                {
+                    <div>
+                        <Button Color="Color.Danger" Clicked="Delete">Delete</Button>
+                    </div>
+                }
             }
             else
             {

@@ -16,5 +16,7 @@ namespace EventOrganizer.Events
         Task RegisterAsync(Guid id);
 
         Task UnRegisterAsync(Guid id);
+
+        Task DeleteAsync(Guid id);
     }
 }

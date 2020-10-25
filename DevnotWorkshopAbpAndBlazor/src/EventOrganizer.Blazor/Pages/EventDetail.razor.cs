@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventOrganizer.Events;
 using Microsoft.AspNetCore.Components;
+using Volo.Abp.AspNetCore.Components.WebAssembly;
 using Volo.Abp.Users;
 
 namespace EventOrganizer.Blazor.Pages
@@ -17,6 +18,12 @@ namespace EventOrganizer.Blazor.Pages
 
         [Inject]
         private ICurrentUser CurrentUser { get; set; }
+
+        [Inject]
+        private NavigationManager NavigationManager { get; set; }
+
+        [Inject]
+        private IUiMessageService MessageService { get; set; }
 
         private EventDetailDto Event { get; set; }
 
@@ -46,6 +53,17 @@ namespace EventOrganizer.Blazor.Pages
         {
             await EventAppService.UnRegisterAsync(Guid.Parse(Id));
             await GetEventAsync();
+        }
+
+        private async Task Delete()
+        {
+            if (!await MessageService.ConfirmAsync("This event will be deleted: " + Event.Title))
+            {
+                return;
+            }
+
+            await EventAppService.DeleteAsync(Guid.Parse(Id));
+            NavigationManager.NavigateTo("/");
         }
     }
 }

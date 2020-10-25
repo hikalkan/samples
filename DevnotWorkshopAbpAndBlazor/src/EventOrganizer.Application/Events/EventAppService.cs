@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EventOrganizer.Users;
 using Microsoft.AspNetCore.Authorization;
+using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Users;
@@ -80,6 +81,19 @@ namespace EventOrganizer.Events
             {
                 await _eventRepository.UpdateAsync(@event);
             }
+        }
+
+        [Authorize]
+        public async Task DeleteAsync(Guid id)
+        {
+            var @event = await _eventRepository.GetAsync(id);
+
+            if (CurrentUser.Id != @event.CreatorId)
+            {
+                throw new UserFriendlyException("You don't have necessary permission to delete this event!");
+            }
+
+            await _eventRepository.DeleteAsync(id);
         }
     }
 }
