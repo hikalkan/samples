@@ -14,7 +14,7 @@
         </Field>
         <Field>
             <FieldLabel>@L["Description"]</FieldLabel>
-            <TextEdit @bind-text="@Event.Description"/>
+            <MemoEdit @bind-text="@Event.Description"/>
         </Field>
         <Field>
             <Check TValue="bool" @bind-Checked="@Event.IsFree">@L["Free"]</Check>

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Volo.Abp.Domain.Entities.Auditing;
 
 namespace EventOrganizer.Events
 {
-    public class Event : FullAuditedAggregateRoot<Guid>
+    public class EventDetailDto
     {
         public string Title { get; set; }
 
@@ -14,11 +13,6 @@ namespace EventOrganizer.Events
 
         public DateTime StartTime { get; set; }
 
-        public ICollection<EventAttendee> Attendees { get; set; }
-
-        public Event()
-        {
-            Attendees = new List<EventAttendee>();
-        }
+        public List<EventAttendeeDto> Attendees { get; set; }
     }
 }

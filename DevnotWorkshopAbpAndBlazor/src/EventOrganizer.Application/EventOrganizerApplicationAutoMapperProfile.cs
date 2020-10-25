@@ -10,6 +10,11 @@ namespace EventOrganizer
         {
             CreateMap<EventCreationDto, Event>()
                 .Ignore(x => x.Attendees);
+
+            CreateMap<Event, EventDetailDto>();
+
+            CreateMap<EventAttendee, EventAttendeeDto>()
+                .Ignore(x => x.UserName);
         }
     }
 }

@@ -1,0 +1,23 @@
+﻿@page "/events/{id}"
+@if (Event != null)
+{
+    <Row>
+        <Column ColumnSize="ColumnSize.Is8">
+            <h1>@Event.Title</h1>
+            <p>Start time: @Event.StartTime.ToLongTimeString()</p>
+            <p>@Event.Description</p>
+        </Column>
+        <Column ColumnSize="ColumnSize.Is4">
+            <div>
+                TODO: Join/Cancel
+            </div>
+            <h3>Attendees</h3>
+            <ul>
+                @foreach (var attendee in Event.Attendees)
+                {
+                    <li>@attendee.UserName</li>
+                }
+            </ul>
+        </Column>
+    </Row>
+}

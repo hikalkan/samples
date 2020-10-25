@@ -11,9 +11,13 @@ namespace EventOrganizer.Blazor.Pages
         [Inject]
         private IEventAppService EventAppService { get; set; }
 
+        [Inject]
+        private NavigationManager NavigationManager { get; set; }
+
         private async Task Create()
         {
-            await EventAppService.CreateAsync(Event);
+            var id = await EventAppService.CreateAsync(Event);
+            NavigationManager.NavigateTo("/events/" + id);
         }
     }
 }
