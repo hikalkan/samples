@@ -11,7 +11,7 @@
     <div class="p-5 text-center">
         <h1>Welcome to the Event Organizer!</h1>
 
-        @if ( !CurrentUser.IsAuthenticated )
+        @if (!CurrentUser.IsAuthenticated)
         {
             <a class="btn btn-primary" href="/authentication/login">
                 <i class="fa fa-sign-in-alt"></i> @L["Login"]
@@ -23,6 +23,24 @@
                 <i class="fa fa-sign-in-alt"></i> @L["CreateEvent"]
             </a>
         }
-
     </div>
+    <h2>Upcoming Events</h2>
+    <Row>
+        <Column>
+            @foreach (var upcomingEvent in UpcomingEvents)
+            {
+                <div style="border:1px solid gray" class="m-2 p-2">
+                    <h3>
+                        <a href="/events/@upcomingEvent.Id">@upcomingEvent.Title</a>
+                        @if (@upcomingEvent.IsFree)
+                        {
+                            <Badge Color="Color.Primary">Free!</Badge>
+                        }
+                    </h3>
+                    <p>Start Time: @upcomingEvent.StartTime.ToLongDateString()</p>
+                    <p>@upcomingEvent.Description.TruncateWithPostfix(50)</p>
+                </div>
+            }
+        </Column>
+    </Row>
 </div>

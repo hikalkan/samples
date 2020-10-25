@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using EventOrganizer.Users;
 using Microsoft.AspNetCore.Authorization;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Users;
 
 namespace EventOrganizer.Events
 {
@@ -43,6 +45,41 @@ namespace EventOrganizer.Events
             }
 
             return result;
+        }
+
+        public async Task<List<EventDto>> GetUpcomingAsync()
+        {
+            var events = await AsyncExecuter.ToListAsync(
+                _eventRepository
+                    .Where(x => x.StartTime > DateTime.Now)
+                    .OrderBy(x => x.StartTime)
+            );
+
+            return ObjectMapper.Map<List<Event>, List<EventDto>>(events);
+        }
+
+        [Authorize]
+        public async Task RegisterAsync(Guid id)
+        {
+            var @event = await _eventRepository.GetAsync(id);
+            if (@event.Attendees.Any(a => a.UserId == CurrentUser.Id))
+            {
+                return;
+            }
+
+            @event.Attendees.Add(new EventAttendee {UserId = CurrentUser.GetId(), CreationTime = Clock.Now});
+            await _eventRepository.UpdateAsync(@event);
+        }
+
+        [Authorize]
+        public async Task UnRegisterAsync(Guid id)
+        {
+            var @event = await _eventRepository.GetAsync(id);
+            var removedItems = @event.Attendees.RemoveAll(x => x.UserId == CurrentUser.Id);
+            if (removedItems.Any())
+            {
+                await _eventRepository.UpdateAsync(@event);
+            }
         }
     }
 }
