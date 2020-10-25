@@ -37,7 +37,10 @@
                             <Badge Color="Color.Primary">Free!</Badge>
                         }
                     </h3>
-                    <p>Start Time: @upcomingEvent.StartTime.ToLongDateString()</p>
+                    <p>
+                        Start Time: @upcomingEvent.StartTime.ToLongDateString()<br/>
+                        @upcomingEvent.AttendeesCount Attendes
+                    </p>
                     <p>@upcomingEvent.Description.TruncateWithPostfix(50)</p>
                 </div>
             }

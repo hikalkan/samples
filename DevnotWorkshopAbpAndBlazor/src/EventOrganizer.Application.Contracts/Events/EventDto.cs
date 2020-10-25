@@ -12,5 +12,7 @@ namespace EventOrganizer.Events
         public bool IsFree { get; set; }
 
         public DateTime StartTime { get; set; }
+
+        public int AttendeesCount { get; set; }
     }
 }

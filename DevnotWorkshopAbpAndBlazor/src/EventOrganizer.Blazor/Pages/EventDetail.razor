@@ -21,6 +21,12 @@
                     }
                 </div>
             }
+            else
+            {
+                <a class="btn btn-primary" href="/authentication/login">
+                    <i class="fa fa-sign-in-alt"></i> Login to attend!
+                </a>
+            }
             <h3>Attendees (@Event.Attendees.Count)</h3>
             <ul>
                 @foreach (var attendee in Event.Attendees)
