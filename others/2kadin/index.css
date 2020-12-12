@@ -1,0 +1,53 @@
+#GameContainer {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#HistoryArea {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.kapi-wrapper {
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+}
+.kapi-title {
+  font-size: 1.5em;
+}
+.kapi {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  height: 200px;
+  padding-top: 75px;
+  font-size: 2em;
+}
+
+#Kapi1 {
+  background-color: #ffef96;
+}
+
+#Kapi2 {
+  background-color: #86af49;
+}
+
+#GameInfo {
+  font-size: 0.9em;
+}
+
+#PresenterMessage {
+  font-weight: bold;
+}
+
+.stats-number,
+.stats-last-info {
+  font-weight: bold;
+}
+
+.true-result {
+  color: green;
+}
+.false-result {
+  color: red;
+}

@@ -1,0 +1,186 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"
+    />
+
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">2 Kadın Problemi</h1>
+      <div class="row">
+        <div class="col-lg-6">
+          <div id="GameContainer">
+            <h2 class="text-center">Oyun Alanı</h1>
+              <div class="row">
+                <div class="col text-right">
+                  <div class="kapi-wrapper">
+                    <div class="kapi-title">KAPI 1</div>
+                    <div id="Kapi1" class="kapi"><span id="Kapi1Name">?</span></div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="kapi-wrapper">
+                    <div class="kapi-title">KAPI 2</div>
+                    <div id="Kapi2" class="kapi"><span id="Kapi2Name">?</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col">
+                  <p id="GameInfo">
+                    500 kadın, 500 erkek olmak üzere toplam 1000 kişi arasından
+                    TAMAMEN RASTGELE 2 kişi seçilerek kapıların arkasına (her kapıda
+                    1 kişi olacak şekilde) rastgele yerleştirilmişlerdir.
+                  </p>
+                  <p id="PresenterMessage"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-center">
+                  <button id="OneWomenOneManButton" class="btn-primary">
+                    1 KADIN 1 ERKEK
+                  </button>
+                  <button id="DoubleWomenButton" class="btn-danger">
+                    2 KADIN
+                  </button>
+                </div>
+              </div>
+              <hr />
+              <h5 class="text-center mt-2">Çoklu Oyun</h4>
+                <div class="row mb-2">
+                  <div class="col text-center">
+                    <p>Bastığınız butona aşağıdaki sayı kadar basmış sayılırsınız</p>
+                    <input type="text" id="MultipleGameCount" value="100" />
+                  </div>
+                </div>
+              <div class="row">
+                <div class="col text-center">
+                  <button id="MultipleOneWomenOneManButton" class="btn-primary">
+                    1 KADIN 1 ERKEK
+                  </button>
+                  <button id="MultipleDoubleWomenButton" class="btn-danger">
+                    2 KADIN
+                  </button>
+                  <div>
+                    <hr />
+                      <h5>Oyun Modu</h2>
+                      <select id="GameMode">
+                        <option value="HiddenName">Seçimler tamamen gizli</option>
+                        <option value="KnownName" selected>Seçilen kadının ya da kadınlardan birisinin adını söyle</option>
+                        <option value="OpenDoor">Seçilen kadının ya da kadınlardan birisinin olduğu kapıyı aç</option>
+                      </select>
+                  </div>
+                </div>
+              </div>              
+          </div>          
+        </div>
+        <div class="col-lg-6">
+          <div id="HistoryArea">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">İstatistikler</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Oyun Geçmişi</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <h3>Gerçekleşen</h3>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Toplam oyun sayısı: </td>
+                      <td class="stats-number"><span id="StatTotalGame"></span></td>
+                    </tr>
+                    <tr>
+                      <td>2 Kadın: </td>
+                      <td class="stats-number"><span id="Stat2Woman"></span></td>
+                    </tr>
+                    <tr>
+                      <td>1 Kadın 1 Erkek: </td>
+                      <td class="stats-number"><span id="Stat1Women1Man"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3>Tahminler</h3>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>2 Kadın: </td>
+                      <td class="stats-number"><span id="Stat2WomanAnswer"></span></td>
+                    </tr>
+                    <tr>
+                      <td>1 Kadın 1 Erkek: </td>
+                      <td class="stats-number"><span id="Stat1Women1ManAnswer"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3>Son Oyun Sonucu</h3>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>Seçili Kadın: </td>
+                      <td class="stats-last-info"><span id="StatSelectedWomen"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Tahmin: </td>
+                      <td class="stats-last-info"><span id="StatUserSelection"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Gerçekleşen: </td>
+                      <td class="stats-last-info"><span id="StatSelectedPeople"></span></td>
+                    </tr>
+                    <tr>
+                      <td>Sonuç: </td>
+                      <td class="stats-last-info"><span id="StatResult"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <h5>Son 100 oyun</h5>
+                <table id="HistoryTable" class="table">
+                  <thead>
+                    <th>Tarih</th>
+                    <th>Gerçekleşen</th>
+                    <th>Tahmin</th>
+                    <th>Sonuç</th>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="names.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
