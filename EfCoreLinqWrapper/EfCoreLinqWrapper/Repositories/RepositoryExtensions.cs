@@ -12,13 +12,13 @@ namespace EfCoreLinqWrapper.Repositories
     {
         public static IAbpQueryable<Book> Where(this IAbpQueryable<Book> abpQueryable, Expression<Func<Book, bool>> predicate)
         {
-            return new QueryableWrapper(abpQueryable.AsQueryable().Where(predicate), abpQueryable);
+            return new QueryableWrapper(abpQueryable.GetQueryable().Where(predicate), abpQueryable);
         }
 
         public static async Task<List<Book>> ToListAsync(this IAbpQueryable<Book> abpQueryable)
         {
-            await abpQueryable.BeginTransactionAsync();
-            return await abpQueryable.AsQueryable().ToListAsync();
+            await abpQueryable.InitAsync();
+            return await abpQueryable.GetQueryable().ToListAsync();
         }
     }
 }

@@ -7,6 +7,8 @@ namespace EfCoreLinqWrapper.EfCore
     {
         public DbSet<Book> Books { get; set; }
 
+        public DbSet<Author> Authors { get; set; }
+
         public BookDbContext(DbContextOptions<BookDbContext> builderOptions)
             : base(builderOptions)
         {
@@ -21,6 +23,11 @@ namespace EfCoreLinqWrapper.EfCore
             {
                 b.ToTable("Books");
                 b.Property(x => x.Name).HasMaxLength(128);
+            });
+
+            modelBuilder.Entity<Author>(b =>
+            {
+                b.ToTable("Authors");
             });
         }
     }

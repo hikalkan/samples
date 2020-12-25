@@ -21,24 +21,15 @@ namespace EfCoreLinqWrapper.Repositories
             _abpQueryable = abpQueryable;
         }
 
-        public Task BeginTransactionAsync()
+        public Task InitAsync()
         {
-            return _abpQueryable.BeginTransactionAsync();
+            return _abpQueryable.InitAsync();
         }
 
-        public IEnumerator<Book> GetEnumerator()
+        public IQueryable<Book> GetQueryable()
         {
-            return _queryable.GetEnumerator();
+            return _queryable;
         }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public Type ElementType => _queryable.ElementType;
-        public Expression Expression => _queryable.Expression;
-        public IQueryProvider Provider => _queryable.Provider;
 
         public IAsyncEnumerator<Book> GetAsyncEnumerator(CancellationToken cancellationToken = default)
         {

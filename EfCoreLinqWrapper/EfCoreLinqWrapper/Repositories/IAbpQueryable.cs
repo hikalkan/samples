@@ -3,8 +3,10 @@ using System.Threading.Tasks;
 
 namespace EfCoreLinqWrapper.Repositories
 {
-    public interface IAbpQueryable<T> : IQueryable<T>
+    public interface IAbpQueryable<T>
     {
-        Task BeginTransactionAsync();
+        Task InitAsync();
+
+        IQueryable<T> GetQueryable();
     }
 }

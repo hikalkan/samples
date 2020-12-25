@@ -21,12 +21,10 @@ namespace EfCoreLinqWrapper.Repositories
                 .UseSqlServer(
                     "Server=(LocalDb)\\MSSQLLocalDB;Database=EfCoreLinqWrapperTests;Trusted_Connection=True;MultipleActiveResultSets=true");
 
-            //We can perform async operations if needed!
-
             _dbContext = new BookDbContext(builder.Options);
         }
 
-        public Task BeginTransactionAsync()
+        public Task InitAsync()
         {
             if (_dbContext.Database.CurrentTransaction != null)
             {
@@ -36,31 +34,18 @@ namespace EfCoreLinqWrapper.Repositories
             return _dbContext.Database.BeginTransactionAsync();
         }
 
+
         public async Task CommitAsync()
         {
             await _dbContext.Database.CommitTransactionAsync();
         }
 
-        public IEnumerator<Book> GetEnumerator()
-        {
-            return GetQueryable().GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
-
-        public Type ElementType => GetQueryable().ElementType;
-        public Expression Expression => GetQueryable().Expression;
-        public IQueryProvider Provider => GetQueryable().Provider;
-
-        private IQueryable<Book> GetQueryable()
+        public IQueryable<Book> GetQueryable()
         {
             return _dbContext.Books.AsQueryable();
         }
 
-        public IAsyncEnumerator<Book> GetAsyncEnumerator(CancellationToken cancellationToken = new CancellationToken())
+        public IAsyncEnumerator<Book> GetAsyncEnumerator(CancellationToken cancellationToken = default)
         {
             return _dbContext.Books.AsAsyncEnumerable().GetAsyncEnumerator(cancellationToken);
         }
