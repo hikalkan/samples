@@ -24,7 +24,7 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.Application" Version="5.1.4" />
     <PackageReference Include="Volo.Abp.Account.HttpApi" Version="5.1.4" />
-    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="5.1.4" />
+    <PackageReference Include="Volo.Abp.Account.Web" Version="5.1.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +32,6 @@
     <PackageReference Include="Volo.Abp.Identity.Application" Version="5.1.4" />
     <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="5.1.4" />
     <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="5.1.4" />
-    <PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="5.1.4" />
     <PackageReference Include="Volo.Abp.Identity.Web" Version="5.1.4" />
   </ItemGroup>
 
