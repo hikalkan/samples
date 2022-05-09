@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Collections.ObjectModel;
+using Microsoft.EntityFrameworkCore;
 using UserRelationsDemo.Entities;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -38,12 +39,11 @@ public class UserRelationsDemoDbContext : AbpDbContext<UserRelationsDemoDbContex
         builder.ConfigureTenantManagement();
 
         /* Configure your own entities here */
-/*
+
         builder.Entity<IdentityUser>(b =>
         {
-            b.HasMany<Book>("Readings").WithMany(x => x.Readers);
         });
-*/
+        
         builder.Entity<Book>(b =>
         {
             b.ToTable("Books");
@@ -58,7 +58,7 @@ public class UserRelationsDemoDbContext : AbpDbContext<UserRelationsDemoDbContex
             b.ConfigureByConvention();
 
             b.HasOne(x => x.User).WithMany().HasForeignKey("UserId");
-            b.HasOne(x => x.Book).WithMany().HasForeignKey("BookId");
+            b.HasOne(x => x.Book).WithMany(x => x.UserBooks).HasForeignKey("BookId");
         });
     }
 }
