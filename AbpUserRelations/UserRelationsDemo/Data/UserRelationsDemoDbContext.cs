@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using UserRelationsDemo.Entities;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
+using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
@@ -12,6 +15,9 @@ namespace UserRelationsDemo.Data;
 
 public class UserRelationsDemoDbContext : AbpDbContext<UserRelationsDemoDbContext>
 {
+    public DbSet<Book> Books { get; set; }
+    public DbSet<UserBook> UserBooks { get; set; }
+
     public UserRelationsDemoDbContext(DbContextOptions<UserRelationsDemoDbContext> options)
         : base(options)
     {
@@ -32,5 +38,27 @@ public class UserRelationsDemoDbContext : AbpDbContext<UserRelationsDemoDbContex
         builder.ConfigureTenantManagement();
 
         /* Configure your own entities here */
+/*
+        builder.Entity<IdentityUser>(b =>
+        {
+            b.HasMany<Book>("Readings").WithMany(x => x.Readers);
+        });
+*/
+        builder.Entity<Book>(b =>
+        {
+            b.ToTable("Books");
+            b.ConfigureByConvention();
+            b.Property(x => x.Name).HasMaxLength(100);
+            b.HasIndex(x => x.Name).IsUnique();
+        });
+        
+        builder.Entity<UserBook>(b =>
+        {
+            b.ToTable("UserBooks");
+            b.ConfigureByConvention();
+
+            b.HasOne(x => x.User).WithMany().HasForeignKey("UserId");
+            b.HasOne(x => x.Book).WithMany().HasForeignKey("BookId");
+        });
     }
 }
