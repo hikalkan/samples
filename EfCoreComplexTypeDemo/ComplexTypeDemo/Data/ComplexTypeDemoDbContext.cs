@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ComplexTypeDemo.Entities;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
@@ -32,5 +33,16 @@ public class ComplexTypeDemoDbContext : AbpDbContext<ComplexTypeDemoDbContext>
         builder.ConfigureTenantManagement();
 
         /* Configure your own entities here */
+
+        builder.Entity<Customer>(b =>
+        {
+            b.ToTable("Customers");
+            b.ComplexProperty(x => x.HomeAddress, a =>
+            {
+                a.Property(x => x.City).HasMaxLength(50).IsRequired();
+            });
+            b.ComplexProperty(x => x.BusinessAddress);
+            //... configure other properties
+        });
     }
 }
